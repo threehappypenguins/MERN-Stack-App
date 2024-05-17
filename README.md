@@ -1,2 +1,2 @@
 # MERN-Stack-App
-Learning to build a MERN stack application.
+I am learning to build a MERN stack application via [tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9iJ_KkrkBZWZRHVwnzLIoUE)
