@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Pages & components
 import Home from './pages/Home'
+import Users from './pages/Users'
 import Navbar from './components/Navbar'
 
 function App() {
@@ -14,6 +15,10 @@ function App() {
             <Route 
               path="/"
               element={<Home />}
+            />
+            <Route
+              path="/users"
+              element={<Users />}
             />
           </Routes>
         </div>

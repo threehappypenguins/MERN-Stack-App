@@ -22,6 +22,36 @@ header .container {
   align-items: center;
   justify-content: space-between;
 }
+
+/* Style for nav and ul to make the links horizontal */
+nav ul {
+  list-style: none; /* Remove bullets */
+  display: flex; /* Align items horizontally */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+/* Style for nav links */
+nav ul li {
+  margin-right: 20px; /* Space between links */
+}
+
+nav ul li:last-child {
+  margin-right: 0; /* Remove space after the last link */
+}
+
+/* Additional styling for links */
+nav ul li a {
+  text-decoration: none; /* Remove underline */
+  color: #000; /* Link color */
+  font-size: 16px; /* Font size */
+}
+
+/* Optional: Hover effect for links */
+nav ul li a:hover {
+  color: #007BFF; /* Change color on hover */
+}
+
 header a {
   color: #333;
   text-decoration: none;
@@ -99,4 +129,35 @@ div.error {
 }
 input.error {
   border: 1px solid var(--error);
+}
+
+/* Users page */
+
+.user-details {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+.user-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+.user-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+.user-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
 }
