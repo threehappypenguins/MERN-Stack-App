@@ -1,10 +1,20 @@
 const Workout = require('../models/workoutModel')
 const mongoose = require('mongoose')
 
-// Get all workouts
+// Get all workouts or workouts for a specific user
 const getWorkouts = async (req, res) => {
-    const workouts = await Workout.find({}).sort({createdAt: -1})
+    const { userId } = req.query
     
+    let query = {}
+    if (userId) {
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+            return res.status(404).json({ error: 'Invalid user ID' })
+        }
+        query.userId = userId
+    }
+
+    const workouts = await Workout.find(query).sort({ createdAt: -1 })
+
     res.status(200).json(workouts)
 }
 
@@ -27,7 +37,7 @@ const getWorkout = async (req, res) => {
 
 // Create new workout
 const createWorkout = async (req, res) => {
-    const {title, load, reps} = req.body
+    const {title, load, reps, userId} = req.body
 
     let emptyFields = []
 
@@ -40,13 +50,16 @@ const createWorkout = async (req, res) => {
     if (!reps) {
         emptyFields.push('reps')
     }
+    if (!userId) {
+        emptyFields.push('userId')
+    }
     if (emptyFields.length > 0) {
         return res.status(400).json({ error: 'Please fill in all the fields.', emptyFields })
     }
 
     // Add doc to db
     try {
-        const workout = await Workout.create({title, load, reps})
+        const workout = await Workout.create({title, load, reps, userId})
         res.status(200).json(workout)
     } catch (error) {
         res.status(400).json({ error: error.message })

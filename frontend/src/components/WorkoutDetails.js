@@ -1,10 +1,22 @@
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
+import { useState, useEffect } from 'react';
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext()
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await fetch(`/api/users/${workout.userId}`)
+      const userData = await response.json()
+      setUser(userData)
+    }
+
+    fetchUser()
+  }, [workout.userId])
 
   const handleClick = async () => {
     const response = await fetch('/api/workouts/' + workout._id, {
@@ -20,6 +32,7 @@ const WorkoutDetails = ({ workout }) => {
   return (
     <div className="workout-details">
       <h4>{workout.title}</h4>
+      {user && <p><strong>Name: </strong>{user.name}</p>}
       <p><strong>Load (kg): </strong>{workout.load}</p>
       <p><strong>Number of reps: </strong>{workout.reps}</p>
       <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
