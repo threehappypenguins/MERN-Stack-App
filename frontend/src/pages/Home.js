@@ -39,10 +39,10 @@ const Home = () => {
   : workouts
 
   return (
-    <div className="home">
+    <>
       <div className="filter-dropdown">
         <label>Filter by User:</label>
-        <select onChange={(e) => setSelectedUser(e.target.value)} value={selectedUser}>
+        <select className="user-select" onChange={(e) => setSelectedUser(e.target.value)} value={selectedUser}>
           <option value="">All Users</option>
           {users.map((user) => (
             <option key={user._id} value={user._id}>
@@ -51,13 +51,15 @@ const Home = () => {
           ))}
         </select>
       </div>
-      <div className="workouts">
-        {filteredWorkouts && filteredWorkouts.map((workout) => (
-          <WorkoutDetails key={workout._id} workout={workout} />
-        ))}
+      <div className="home">
+        <div className="workouts">
+          {filteredWorkouts && filteredWorkouts.map((workout) => (
+            <WorkoutDetails key={workout._id} workout={workout} />
+          ))}
+        </div>
+        <WorkoutForm />
       </div>
-      <WorkoutForm />
-    </div>
+    </>
   )
 }
 

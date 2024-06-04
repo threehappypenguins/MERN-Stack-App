@@ -64,8 +64,7 @@ header a {
 
 /* homepage */
 .home {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 100px;
 }
@@ -100,6 +99,19 @@ header a {
   border-radius: 50%;
   color: #333;
 }
+/* Ensure form elements are block-level and spaced correctly */
+select {
+  display: block;
+  margin-bottom: 20px;
+}
+.user-select {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  margin-top: 20px;
+}
 
 /* new workout form */
 label, input {
@@ -122,6 +134,7 @@ form button {
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 div.error {
   padding: 10px;

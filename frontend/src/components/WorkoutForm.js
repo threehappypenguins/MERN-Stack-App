@@ -82,7 +82,7 @@ const WorkoutForm = () => {
       />
 
       <label>User:</label>
-      <select onChange={(e) => setUserId(e.target.value)} value={userId}>
+      <select className="user-select" onChange={(e) => setUserId(e.target.value)} value={userId}>
         <option value="">Select User</option>
         {users.map((user) => (
           <option key={user._id} value={user._id}>
