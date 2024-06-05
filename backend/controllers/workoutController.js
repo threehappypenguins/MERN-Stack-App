@@ -56,6 +56,9 @@ const createWorkout = async (req, res) => {
     if (emptyFields.length > 0) {
         return res.status(400).json({ error: 'Please fill in all the fields.', emptyFields })
     }
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        return res.status(400).json({ error: 'Invalid user ID' })
+    }
 
     // Add doc to db
     try {
