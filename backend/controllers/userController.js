@@ -1,4 +1,5 @@
 const User = require('../models/userModel')
+const Workout = require('../models/workoutModel')
 const mongoose = require('mongoose')
 
 // GET all users
@@ -65,6 +66,10 @@ const deleteUser = async (req, res) => {
   if (!user) {
     return res.status(404).json({error: 'No such user.'})
   }
+
+  // Delete the associated workouts
+  await Workout.deleteMany({ userId: id })
+  
   res.status(200).json(user)
 }
 
